@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affinity 2.0 Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #3498db;
+            --accent: #2ecc71;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --warning: #e74c3c;
+            --purple: #9b59b6;
+            --orange: #e67e22;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,202.7C672,203,768,181,864,170.7C960,160,1056,160,1152,170.7C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 25px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-card h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .feature-card p {
+            color: #555;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .journey-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .journey-card {
+            flex: 1;
+            min-width: 280px;
+            background: var(--light);
+            padding: 25px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+        
+        .journey-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+        
+        .journey-card:nth-child(1)::before {
+            background: var(--gradient);
+        }
+        
+        .journey-card:nth-child(2)::before {
+            background: linear-gradient(to right, var(--accent), #27ae60);
+        }
+        
+        .journey-card:nth-child(3)::before {
+            background: linear-gradient(to right, var(--purple), #8e44ad);
+        }
+        
+        .journey-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .journey-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .journey-card h3 i {
+            margin-right: 10px;
+        }
+        
+        .user-roles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .role-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+        
+        .role-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+        }
+        
+        .role-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .role-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .role-card h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .benefits-list {
+            list-style-type: none;
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .benefit-item {
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .benefit-item:hover {
+            transform: translateX(10px);
+            background: linear-gradient(135deg, #e8f4fc, #d1ecf1);
+        }
+        
+        .benefit-item i {
+            margin-right: 15px;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8e6cf 0%, #a8e6cf 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.4em;
+            background-position: 0 88%;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: var(--dark);
+            background: var(--gradient);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 900px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+        
+        .modal-header {
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .modal-subtitle {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .modal-body {
+            line-height: 1.7;
+        }
+        
+        .modal-section {
+            margin-bottom: 25px;
+        }
+        
+        .modal-section h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .modal-section h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .modal-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .modal-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .modal-list li:before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .features-grid, .user-roles {
+                grid-template-columns: 1fr;
+            }
+            
+            .journey-types {
+                flex-direction: column;
+            }
+            
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+        
+        /* Animation for cards on scroll */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* Stagger animation delay */
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+        .feature-card:nth-child(7) { animation-delay: 0.7s; }
+        .feature-card:nth-child(8) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1>Affinity Insurance 2.0 Platform</h1>
+                <p>A comprehensive digital solution for managing affinity insurance programs</p>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> Platform Overview</h2>
+            <p>Affinity 2.0 is a <span class="">web-based, configurable platform</span> that enables insurance brokers to sell tailored insurance products to specific groups or organizational members who share common characteristics or interests.</p>
+            <p>The platform provides end-to-end digital capabilities for partner onboarding, product configuration, policy issuance, claims management, and business analytics.</p>
+            
+            <div class="stats-container">
+                <div class="stat-card" data-modal="journey-types">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Journey Types</div>
+                </div>
+                <div class="stat-card" data-modal="user-roles">
+                    <div class="stat-number">6+</div>
+                    <div class="stat-label">User Roles</div>
+                </div>
+                <div class="stat-card" data-modal="key-features">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Key Features</div>
+                </div>
+                <div class="stat-card" data-modal="digital-process">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Digital Process</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-star"></i> Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card animate-card" data-modal="partner-onboarding">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3><i class="fas fa-users"></i> Partner Onboarding & Management</h3>
+                    <p>Efficiently create and manage partner accounts with organizational structure configuration and distribution channel mapping.</p>
+                </div>
+                
+                <div class="feature-card animate-card" data-modal="product-configuration">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3><i class="fas fa-box"></i> Product Configuration</h3>
+                    <p>Create and customize insurance products with specific features, riders, and add-ons tailored to partner needs.</p>
+                </div>
+                
+                <div class="feature-card animate-card" data-modal="premium-engine">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3><i class="fas fa-chart-line"></i> Premium Rule Engine</h3>
+                    <p>Define customized premium calculation rules based on factors like age, sum insured, family size, and industry type.</p>
+                </div>
+                
+                <div class="feature-card animate-card" data-modal="coi-issuance">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-certificate"></i>
+                    </div>
+                    <h3><i class="fas fa-certificate"></i> COI Issuance</h3>
+                    <p>Generate individual certificates in real-time through API integration or internal platform generation.</p>
+                </div>
+                
+                <div class="feature-card animate-card" data-modal="bulk-upload">
+                    <div class="feature-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3><i class="fas fa-database"></i> Bulk Upload Capabilities</h3>
+                    <p>Upload multiple member details at once using Excel or CSV files for efficient certificate issuance.</p>
+                </div>
+                
+                <div class="feature-card animate-card" data-modal="claims-management">
+                    <div class="feature-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3><i class="fas fa-tasks"></i> Claims Management</h3>
+                    <p>End-to-end claim processing with configurable templates, tracking, and analytics dashboard.</p>
+                </div>
+                
+                <div class="feature-card animate-card" data-modal="endorsement-module">
+                    <div class="feature-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3><i class="fas fa-pen-alt"></i> Endorsement Module</h3>
+                    <p>Enable policy modifications and cancellations with automated refund processing and audit trails.</p>
+                </div>
+                
+                <div class="feature-card animate-card" data-modal="hierarchy-management">
+                    <div class="feature-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3><i class="fas fa-user-shield"></i> Hierarchy Management</h3>
+                    <p>Role-based access control with data scoping and visibility settings for different user levels.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-route"></i> Customer Journey Types</h2>
+            <div class="journey-types">
+                <div class="journey-card" data-modal="retail-journey">
+                    <h3><i class="fas fa-user"></i> Retail / Non-Assisted Journey</h3>
+                    <p>Self-service journey where customers access insurance through partner URLs, complete forms, view quotes, and make payments independently.</p>
+                </div>
+                
+                <div class="journey-card" data-modal="assisted-journey">
+                    <h3><i class="fas fa-headset"></i> Sales / Assisted Journey</h3>
+                    <p>Sales staff initiate journeys on behalf of customers, create leads, collect details, and assist with the entire purchase process.</p>
+                </div>
+                
+                <div class="journey-card" data-modal="embedded-journey">
+                    <h3><i class="fas fa-code-branch"></i> Embedded Journey</h3>
+                    <p>Seamless integration of insurance into partner platforms via API or redirection, offering insurance during relevant transactions.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-user-tie"></i> User Roles & Responsibilities</h2>
+            <div class="user-roles">
+                <div class="role-card" data-modal="super-admin">
+                    <h3><i class="fas fa-crown"></i> Super Admin</h3>
+                    <p>Top-level user with full system configuration access, rule engine management, and master data control.</p>
+                </div>
+                
+                <div class="role-card" data-modal="broker-admin">
+                    <h3><i class="fas fa-user-cog"></i> Broker Admin</h3>
+                    <p>Manages insurer, partner, and product configurations, monitors CD balances, and configures payment workflows.</p>
+                </div>
+                
+                <div class="role-card" data-modal="partner-admin">
+                    <h3><i class="fas fa-user-friends"></i> Partner Admin</h3>
+                    <p>Manages customer journeys, tracks CD balances, monitors certificates, and configures notifications.</p>
+                </div>
+                
+                <div class="role-card" data-modal="sales-manager">
+                    <h3><i class="fas fa-chart-line"></i> Sales Manager</h3>
+                    <p>Conducts purchase journeys on behalf of customers and monitors issued certificates.</p>
+                </div>
+                
+                <div class="role-card" data-modal="branch-operations">
+                    <h3><i class="fas fa-code-branch"></i> Branch Operations</h3>
+                    <p>Reviews proposals and approves payments at the branch level.</p>
+                </div>
+                
+                <div class="role-card" data-modal="central-operations">
+                    <h3><i class="fas fa-building"></i> Central Operations</h3>
+                    <p>Approves bulk certificate payments and validates central-level transactions.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-tachometer-alt"></i> Dashboard Capabilities</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-modal="insurer-dashboard">
+                    <div class="feature-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3><i class="fas fa-industry"></i> Insurer Dashboard</h3>
+                    <p>Centralized overview of platform performance, partner activity, premium collection, and business metrics.</p>
+                </div>
+                
+                <div class="feature-card" data-modal="broker-dashboard">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3><i class="fas fa-user-tie"></i> Broker Dashboard</h3>
+                    <p>Sales tracking, client portfolio management, commission structure, and team performance analytics.</p>
+                </div>
+                
+                <div class="feature-card" data-modal="partner-dashboard">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3><i class="fas fa-handshake"></i> Partner Dashboard</h3>
+                    <p>Business performance insights, client activity tracking, policy management, and commission earnings.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-award"></i> Key Benefits</h2>
+            <ul class="benefits-list">
+                <li class="benefit-item" data-modal="digitalization-benefit">
+                    <i class="fas fa-bolt"></i>
+                    <span>End-to-end digitalization of affinity insurance lifecycle</span>
+                </li>
+                <li class="benefit-item" data-modal="automation-benefit">
+                    <i class="fas fa-clock"></i>
+                    <span>Reduced turnaround time and manual errors through automation</span>
+                </li>
+                <li class="benefit-item" data-modal="dashboard-benefit">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Real-time dashboards for business tracking and compliance</span>
+                </li>
+                <li class="benefit-item" data-modal="journey-benefit">
+                    <i class="fas fa-route"></i>
+                    <span>Configurable journeys for different sales models</span>
+                </li>
+                <li class="benefit-item" data-modal="scalability-benefit">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                    <span>Scalable, secure, and API-driven architecture</span>
+                </li>
+                <li class="benefit-item" data-modal="ecosystem-benefit">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Enhanced partner ecosystem and customer engagement</span>
+                </li>
+                <li class="benefit-item" data-modal="compliance-benefit">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>Regulatory compliance with full audit trails</span>
+                </li>
+                <li class="benefit-item" data-modal="process-benefit">
+                    <i class="fas fa-tasks"></i>
+                    <span>Streamlined claims and endorsement processes</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Affinity Insurance 2.0 Platform</h3>
+                <p>Comprehensive Digital Solution for Group Insurance Management</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Feature Title</h2>
+                <p class="modal-subtitle" id="modal-subtitle">Feature Subtitle</p>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalSubtitle = document.getElementById('modal-subtitle');
+        const modalBody = document.getElementById('modal-body');
+        const closeBtn = document.querySelector('.close-modal');
+        
+        // Modal content data
+        const modalData = {
+            'partner-onboarding': {
+                title: 'Partner Onboarding & Management',
+                subtitle: 'Streamlined partner integration process',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>The Affinity Platform includes a dedicated module for partner onboarding and management. This module allows the Insurance Company to efficiently create and manage partner accounts.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Capabilities</h3>
+                        <ul class="modal-list">
+                            <li><strong>Partner Registration:</strong> Add new partners to the platform</li>
+                            <li><strong>Organizational Structure Configuration:</strong> Set up the partner's internal hierarchy (e.g., branches, departments)</li>
+                            <li><strong>Mapping of Insurance Company & Partner Distribution Channels:</strong> Connect the partner with relevant insurance products and channels</li>
+                            <li><strong>User Account Creation:</strong> Set up user access for the partner's employees</li>
+                            <li><strong>Partner Role & Permission Management:</strong> Define roles and access rights for partner users</li>
+                            <li><strong>Partner Branding:</strong> Customize the partner's presence on the platform</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Streamlined partner integration process</li>
+                            <li>Centralized partner management</li>
+                            <li>Customizable partner experiences</li>
+                            <li>Efficient distribution channel setup</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'product-configuration': {
+                title: 'Product Configuration',
+                subtitle: 'Create and customize insurance products',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>The platform enables insurance companies to create and configure insurance products tailored to specific partner needs with customizable features, riders, and add-ons.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Capabilities</h3>
+                        <ul class="modal-list">
+                            <li><strong>Product Creation:</strong> Add new insurance products to the platform</li>
+                            <li><strong>Feature Addition:</strong> Define and configure product-specific features</li>
+                            <li><strong>Rider/Add-on Configuration:</strong> Set up additional coverage options</li>
+                            <li><strong>Policy Configuration:</strong> Construct policies based on personal details, family details, sum insured and sum assured</li>
+                            <li><strong>Premium Rate Configuration:</strong> Set premium rates for each product for partner entities</li>
+                            <li><strong>Configurable Input Fields:</strong> Customize fields based on policy type</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Tailored insurance products for specific partner needs</li>
+                            <li>Flexible product configuration options</li>
+                            <li>Quick adaptation to market requirements</li>
+                            <li>Consistent product experience across channels</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'premium-engine': {
+                title: 'Premium Rule Engine',
+                subtitle: 'Customizable premium calculation system',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Underwriters can define customized rules for insurance plans tailored to specific partners or clients. The platform allows full digital setup of these plans, including rate tables and partner/client relationships.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Factors Considered</h3>
+                        <ul class="modal-list">
+                            <li><strong>Age of the insured:</strong> Premium adjustments based on age brackets</li>
+                            <li><strong>Sum insured:</strong> Coverage amount impacting premium calculation</li>
+                            <li><strong>Family size:</strong> Number of dependents affecting premium rates</li>
+                            <li><strong>Industry type:</strong> Risk assessment based on occupation or industry</li>
+                            <li><strong>Location:</strong> Geographic factors influencing risk and premium</li>
+                            <li><strong>Medical history:</strong> Health factors for risk assessment</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Accurate risk-based pricing</li>
+                            <li>Customizable calculation rules</li>
+                            <li>Automated premium computation</li>
+                            <li>Consistent pricing across channels</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'coi-issuance': {
+                title: 'Certificate of Insurance (COI) Issuance',
+                subtitle: 'Real-time certificate generation',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Every member covered under a Master Policy receives an individual Certificate of Insurance (COI). COIs can be generated in real-time through API integration or internal platform generation.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Generation Methods</h3>
+                        <ul class="modal-list">
+                            <li><strong>API Integration:</strong> Real-time integration with the Insurance Company's core system</li>
+                            <li><strong>Internal Generation:</strong> Platform-generated certificates using predefined templates and approved numbering series</li>
+                            <li><strong>Family Coverage:</strong> Certificates can include family members covered under the same policy</li>
+                            <li><strong>Quick Issuance:</strong> Ensures quick and accurate issuance without manual delays</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Real-time certificate generation</li>
+                            <li>Reduced manual processing time</li>
+                            <li>Accurate and consistent certificate formatting</li>
+                            <li>Seamless integration with core systems</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'bulk-upload': {
+                title: 'Bulk Upload Capabilities',
+                subtitle: 'Efficient mass member onboarding',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>To streamline onboarding and reduce manual effort, the platform allows the Insurance Company, Brokers, or Partners to upload multiple member details at once using .xls, .xlsx, or .csv files.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Features</h3>
+                        <ul class="modal-list">
+                            <li><strong>Efficient Processing:</strong> Upload all member data at once instead of creating proposals individually</li>
+                            <li><strong>Automatic Certificate Generation:</strong> The platform generates Certificates of Insurance (COIs) automatically for all uploaded members</li>
+                            <li><strong>Error Handling:</strong> Invalid or missing data is flagged for correction before processing</li>
+                            <li><strong>Faster Onboarding:</strong> Speeds up the issuance process, especially for large groups</li>
+                            <li><strong>Digital Record Keeping:</strong> All uploaded data and issued certificates are stored securely in the platform for reporting, audits, and future updates</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Significant time savings for large groups</li>
+                            <li>Reduced manual data entry errors</li>
+                            <li>Streamlined member onboarding process</li>
+                            <li>Automated error detection and correction</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'claims-management': {
+                title: 'Claims Management',
+                subtitle: 'End-to-end claims processing',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>The Claims Module provides an end-to-end solution for managing insurance claims. It enables Brokers, Partners, and the Insurance Company to efficiently handle claim intimation, submission, tracking, underwriting decisions, and settlement.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Components</h3>
+                        <ul class="modal-list">
+                            <li><strong>Claims Dashboard:</strong> Centralized view for managing and monitoring claims</li>
+                            <li><strong>Claims Submission:</strong> Allows brokers and partners to raise and manage claims</li>
+                            <li><strong>Claims Tracking:</strong> Tracks progress through defined stages (Intimation, Registration, Document Verification, Underwriter Decision, Insurance Company Decision, Settlement)</li>
+                            <li><strong>Network Hospitals:</strong> Displays partner-specific network hospitals</li>
+                            <li><strong>Claims Configurator:</strong> Creation and management of configurable claim templates</li>
+                            <li><strong>Action & Decision Management:</strong> Approvals and rejections with audit trails</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Reduces manual intervention and errors</li>
+                            <li>Improves claim turnaround time (TAT)</li>
+                            <li>Provides real-time visibility into claim status</li>
+                            <li>Enables configurable, scalable templates</li>
+                            <li>Supports digital integration with partners</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'endorsement-module': {
+                title: 'Endorsement Module',
+                subtitle: 'Policy modifications and cancellations',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>This module allows policyholders, brokers, partners, and the insurer to modify or cancel policies/COIs efficiently while ensuring financial accuracy and compliance.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Functions</h3>
+                        <ul class="modal-list">
+                            <li><strong>Endorsements:</strong> Users can request financial (premium-affecting) or non-financial modifications</li>
+                            <li><strong>Policy/Certificate Cancellation:</strong> Allows cancellation with automated refund processing</li>
+                            <li><strong>Types of Cancellations:</strong> Voluntary, Involuntary/Insurer-Initiated, Mid-Term, Free Look Period</li>
+                            <li><strong>Refund & Reconciliation:</strong> Requests pushed to core system for calculation and processing</li>
+                            <li><strong>Audit Trail:</strong> All requests tracked in the portal with complete auditability</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Streamlines policy modifications and cancellations</li>
+                            <li>Reduces manual processing and errors</li>
+                            <li>Ensures accurate premium adjustments and refunds</li>
+                            <li>Provides transparency and regulatory compliance</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'hierarchy-management': {
+                title: 'Hierarchy Management',
+                subtitle: 'Role-based access control',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>The platform provides comprehensive hierarchy management with role-based access control, data scoping, and visibility settings for different user levels.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Management Levels</h3>
+                        <ul class="modal-list">
+                            <li><strong>Management Hierarchy:</strong> Regional Manager, Zonal Manager, National Manager, CEO</li>
+                            <li><strong>User Hierarchy:</strong> Data Scoping and Visibility of Journeys/Leads</li>
+                            <li><strong>Admin Hierarchy:</strong> Data Scoping and Visibility of Configuration modules</li>
+                            <li><strong>Role Management:</strong> Define and assign permissions based on responsibilities</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Granular access control based on organizational structure</li>
+                            <li>Data security through proper scoping</li>
+                            <li>Clear role definitions and responsibilities</li>
+                            <li>Flexible permission management</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'retail-journey': {
+                title: 'Retail / Non-Assisted Journey',
+                subtitle: 'Self-service customer journey',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>This journey is exclusively available for customers of the broker's partner to issue their insurance certificate. The customer accesses the journey by clicking on the product or the partner URL shared by the partner.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Journey Flow</h3>
+                        <ul class="modal-list">
+                            <li><strong>Input Page:</strong> Customer provides personal details, plan type, location details, contact details, and plan-specific details</li>
+                            <li><strong>Quotation Page:</strong> Displays quotations based on user requirements</li>
+                            <li><strong>Product Selection:</strong> Customer selects a product from displayed quotations</li>
+                            <li><strong>Summary Page:</strong> Complete summary including plan details, insurance company details, and product documents</li>
+                            <li><strong>Payment/Proposal:</strong> Proceeds to payment page (payment first) or proposal page (payment last)</li>
+                            <li><strong>Proposal Submission:</strong> Customer submits proposal with details and nominee information</li>
+                            <li><strong>Certificate Issuance:</strong> Certificate issued after payment confirmation</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-credit-card"></i> Payment Options</h3>
+                        <ul class="modal-list">
+                            <li><strong>Payment Gateway:</strong> Online payment with status tracking APIs</li>
+                            <li><strong>CD Balance:</strong> Complete, partial, negative issuance or reimbursement</li>
+                            <li><strong>NEFT:</strong> Bank transfer with validation for uniqueness</li>
+                            <li><strong>Cheque:</strong> Requires BO/CO approval for certificate issuance</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'assisted-journey': {
+                title: 'Sales / Assisted Journey',
+                subtitle: 'Staff-assisted purchase process',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>The Sales Admin/Broker Employee/Partner Employee initiates the journey on behalf of the partner's customer for certificate issuance.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Journey Flow</h3>
+                        <ul class="modal-list">
+                            <li><strong>Lead Creation:</strong> Collects Lead ID, Status, Partner Name, Customer Details, Product Type, Policy Type</li>
+                            <li><strong>Link Sharing:</strong> Salesperson can send a link to the customer or continue with assisted journey</li>
+                            <li><strong>Proposal Addition:</strong> Collects Product Proposal Details, Nominee Details, Declaration</li>
+                            <li><strong>OTP Verification:</strong> Configurable OTP sent to customer for verification and agreement</li>
+                            <li><strong>Proposal Submission:</strong> Upon verification, proposal is submitted</li>
+                            <li><strong>Summary Review:</strong> Proposal summary sent to customer for review and confirmation</li>
+                            <li><strong>Payment Stage:</strong> Proceeds to payment via CD Balance or online payment link</li>
+                            <li><strong>Journey Completion:</strong> Journey ends after payment completion</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Personalized assistance for customers</li>
+                            <li>Flexible journey options (self-service or assisted)</li>
+                            <li>Secure OTP-based verification</li>
+                            <li>Streamlined lead management</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'embedded-journey': {
+                title: 'Embedded Journey',
+                subtitle: 'Seamless integration into partner platforms',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Embedded insurance refers to the seamless integration of insurance products into the purchase process of goods or services, often at the point of sale or during another relevant transaction.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Integration Types</h3>
+                        <ul class="modal-list">
+                            <li><strong>Redirection:</strong> Redirecting customers to a URL where they fill out required forms</li>
+                            <li><strong>API-Based Integration:</strong> Seamless data sharing between broker and client for certificate issuance</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-code"></i> API Integration Process</h3>
+                        <ul class="modal-list">
+                            <li><strong>API Exposition:</strong> Broker exposes APIs for clients to access and consume</li>
+                            <li><strong>Client Data Submission:</strong> Client utilizes broker's APIs to send relevant data</li>
+                            <li><strong>Processing by Broker:</strong> Validates details, assesses risk, determines coverage and premium</li>
+                            <li><strong>Certificate Issuance:</strong> Generates insurance certificate tailored to client needs</li>
+                            <li><strong>Delivery to Client:</strong> Certificate sent back to client via API for end customer</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Seamless customer experience</li>
+                            <li>Contextual insurance offerings</li>
+                            <li>Automated certificate issuance</li>
+                            <li>Enhanced partner integration</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'super-admin': {
+                title: 'Super Admin',
+                subtitle: 'Top-level system administrator',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Role Overview</h3>
+                        <p>Top-level user with full access to configure and monitor all broker and partner entities within the Affinity Platform.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Responsibilities</h3>
+                        <ul class="modal-list">
+                            <li><strong>Hierarchy & Access Management:</strong> Full access to configure and monitor all broker and partner entities</li>
+                            <li><strong>Rule Engine Configuration:</strong> Configure and manage rules for Sum Insured and Premium calculations</li>
+                            <li><strong>Form Builder:</strong> Design input and proposal forms for multiple products</li>
+                            <li><strong>Master Data Management:</strong> Create and maintain Insurer, Broker, Partner, and Product master data</li>
+                            <li><strong>System Configuration:</strong> Configure logos, COI settings, nomenclature, technical setup, dashboards, branding, and product journeys</li>
+                            <li><strong>Platform Monitoring:</strong> Oversee system performance and user activities</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Key Capabilities</h3>
+                        <ul class="modal-list">
+                            <li>Full system configuration access</li>
+                            <li>Rule engine management</li>
+                            <li>Master data control</li>
+                            <li>User hierarchy management</li>
+                            <li>System-wide parameter configuration</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'broker-admin': {
+                title: 'Broker Admin',
+                subtitle: 'Broker-level system administrator',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Role Overview</h3>
+                        <p>Manages insurer, partner, and product configurations, monitors CD balances, and configures payment workflows for the broker organization.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Responsibilities</h3>
+                        <ul class="modal-list">
+                            <li><strong>Master Configuration:</strong> Maintain Insurer, Partner, Product, Relation, and Feature masters</li>
+                            <li><strong>Product & Policy Management:</strong> Enable/disable products for partners; configure policy type, COI generation, payment methods</li>
+                            <li><strong>CD Balance & Transactions:</strong> Monitor, update, and export partner CD balances; track COIs issued and partner transactions</li>
+                            <li><strong>Partner Management:</strong> Configure partner branches, links, themes, branding, communication templates, and MIS settings</li>
+                            <li><strong>Lead Generation:</strong> Monitor customer drop-offs and assign leads to sales managers</li>
+                            <li><strong>Payment Workflows:</strong> Configure sum insured type, payment workflows, and location-based setups</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Key Capabilities</h3>
+                        <ul class="modal-list">
+                            <li>Broker-level system configuration</li>
+                            <li>Partner and product management</li>
+                            <li>CD balance monitoring</li>
+                            <li>Lead management oversight</li>
+                            <li>Payment workflow configuration</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'partner-admin': {
+                title: 'Partner Admin',
+                subtitle: 'Partner organization administrator',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Role Overview</h3>
+                        <p>Manages customer journeys, tracks CD balances, monitors certificates, and configures notifications for the partner organization.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Responsibilities</h3>
+                        <ul class="modal-list">
+                            <li><strong>Customer Journey Management:</strong> Share and customize product links for end-user customers</li>
+                            <li><strong>CD Balance Management:</strong> Track and manage CD balances and COIs issued</li>
+                            <li><strong>Certificate Management:</strong> Monitor, download, and track completion of issued certificates</li>
+                            <li><strong>Policy Access:</strong> View master policies associated with their account</li>
+                            <li><strong>Lead & Transaction Management:</strong> Access leads and monitor transactions for their end-users</li>
+                            <li><strong>Notifications:</strong> Configure trigger points and communication templates</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Key Capabilities</h3>
+                        <ul class="modal-list">
+                            <li>Partner-level system management</li>
+                            <li>Customer journey configuration</li>
+                            <li>Certificate tracking and management</li>
+                            <li>Transaction monitoring</li>
+                            <li>Notification configuration</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'sales-manager': {
+                title: 'Sales Manager',
+                subtitle: 'Sales team management role',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Role Overview</h3>
+                        <p>Conducts purchase journeys on behalf of assigned end-users and monitors issued certificates through their intervention.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Responsibilities</h3>
+                        <ul class="modal-list">
+                            <li><strong>Journey Management:</strong> Conduct purchase journeys on behalf of assigned end-users</li>
+                            <li><strong>Issued Certificates:</strong> Monitor and download certificates issued through their intervention</li>
+                            <li><strong>Notifications:</strong> Configure trigger points and send automated communication templates</li>
+                            <li><strong>Customer Assistance:</strong> Help customers complete insurance purchase journeys</li>
+                            <li><strong>Performance Tracking:</strong> Monitor sales performance and conversion rates</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Key Capabilities</h3>
+                        <ul class="modal-list">
+                            <li>Assisted journey execution</li>
+                            <li>Certificate management</li>
+                            <li>Customer communication</li>
+                            <li>Sales performance monitoring</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'branch-operations': {
+                title: 'Branch Operations',
+                subtitle: 'Branch-level operational role',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Role Overview</h3>
+                        <p>Reviews proposals and approves payments at the branch level for insurance policies.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Responsibilities</h3>
+                        <ul class="modal-list">
+                            <li><strong>Proposal Review:</strong> Access and review end-user proposal forms submitted at the branch level</li>
+                            <li><strong>Payment Approval:</strong> Authorize payments via cheque or NEFT for branch-level policies</li>
+                            <li><strong>Document Verification:</strong> Verify supporting documents for policy applications</li>
+                            <li><strong>Customer Support:</strong> Assist customers with branch-level queries and issues</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Key Capabilities</h3>
+                        <ul class="modal-list">
+                            <li>Branch-level proposal review</li>
+                            <li>Payment authorization</li>
+                            <li>Document verification</li>
+                            <li>Customer support at branch level</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'central-operations': {
+                title: 'Central Operations',
+                subtitle: 'Central-level operational role',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Role Overview</h3>
+                        <p>Approves bulk certificate payments and validates central-level transactions for the organization.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Responsibilities</h3>
+                        <ul class="modal-list">
+                            <li><strong>Payment Approval:</strong> Review and approve payments for bulk certificate policies</li>
+                            <li><strong>Transaction Oversight:</strong> Approve and validate transactions received through Cheque or NEFT at the central level</li>
+                            <li><strong>Bulk Operations:</strong> Handle large-scale policy issuance and payment processing</li>
+                            <li><strong>Compliance Monitoring:</strong> Ensure central-level operations comply with regulatory requirements</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Key Capabilities</h3>
+                        <ul class="modal-list">
+                            <li>Central-level payment approval</li>
+                            <li>Bulk transaction validation</li>
+                            <li>Large-scale operations management</li>
+                            <li>Compliance oversight</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'insurer-dashboard': {
+                title: 'Insurer Dashboard',
+                subtitle: 'Insurance company performance overview',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Designed for insurance companies, the dashboard provides a centralized overview of platform performance, partner activity, and business metrics.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Metrics</h3>
+                        <ul class="modal-list">
+                            <li><strong>Business Performance:</strong> Total Active Partners/Brokers, Total Registered Clients, Total Insured Members, Total Policies & COIs Issued, Total Premium Collected</li>
+                            <li><strong>Partner/Broker Performance:</strong> Top-performing partners and brokers, onboarding status, activity levels, commission tracking</li>
+                            <li><strong>Product Performance:</strong> Most popular products and plans, product-wise premium collection, quote-to-policy conversion rates</li>
+                            <li><strong>Servicing & Compliance:</strong> Claims registered vs. settled, endorsement requests, audit trails and activity logs</li>
+                            <li><strong>Alerts & Notifications:</strong> Real-time alerts for critical events, notifications for pending tasks and deadlines</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Comprehensive business intelligence</li>
+                            <li>Real-time performance monitoring</li>
+                            <li>Partner and product analytics</li>
+                            <li>Regulatory compliance tracking</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'broker-dashboard': {
+                title: 'Broker Dashboard',
+                subtitle: 'Broker performance and management',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Focused on sales, client management, and team performance for insurance brokers.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Features</h3>
+                        <ul class="modal-list">
+                            <li><strong>Sales Tracking:</strong> Individual sales performance monitoring</li>
+                            <li><strong>Client Portfolio Overview:</strong> Comprehensive view of client relationships and policies</li>
+                            <li><strong>Commission Structure:</strong> Tracking and management of commission earnings</li>
+                            <li><strong>Group Master Policies:</strong> Reporting and analytics on group master policies</li>
+                            <li><strong>Team Performance Analytics:</strong> Performance metrics for sales teams and individual agents</li>
+                            <li><strong>Lead Management:</strong> Tracking of leads, conversions, and pipeline status</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Sales performance visibility</li>
+                            <li>Client relationship management</li>
+                            <li>Commission tracking and management</li>
+                            <li>Team performance optimization</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'partner-dashboard': {
+                title: 'Partner Dashboard',
+                subtitle: 'Partner business performance insights',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Provides partners with insights into business performance, client activity, and operational efficiency.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Key Features</h3>
+                        <ul class="modal-list">
+                            <li><strong>Performance Summary:</strong> Total clients onboarded, members covered, policies sold, premium generated, commission earned</li>
+                            <li><strong>Client & Policy Management:</strong> Registered clients and onboarding status, active policies, renewal status, endorsements</li>
+                            <li><strong>Quote & Proposal Tracking:</strong> Quotes generated, proposals submitted, conversion rates</li>
+                            <li><strong>Claim Management:</strong> Claims registered by clients, claim status tracking</li>
+                            <li><strong>Reports & Analytics:</strong> Pre-generated sales, client demographics, and renewal reports with export functionality</li>
+                            <li><strong>Alerts & Notifications:</strong> Notifications for proposals, policy renewals, claim status, and pending client actions</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Business performance visibility</li>
+                            <li>Client activity tracking</li>
+                            <li>Commission earnings monitoring</li>
+                            <li>Operational efficiency insights</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'journey-types': {
+                title: '3 Journey Types',
+                subtitle: 'Comprehensive customer engagement options',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Affinity 2.0 provides three distinct journey types to cater to different customer engagement models and sales approaches.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Journey Types</h3>
+                        <ul class="modal-list">
+                            <li><strong>Retail (Non-Assisted):</strong> End-customer self-service purchase via partner/broker links</li>
+                            <li><strong>Sales (Assisted):</strong> Sales or broker staff complete journeys on behalf of customers</li>
+                            <li><strong>Embedded:</strong> API or redirect-based insurance integration within third-party platforms</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Flexible customer engagement models</li>
+                            <li>Adaptable to different sales strategies</li>
+                            <li>Seamless integration options</li>
+                            <li>Enhanced customer experience</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'user-roles': {
+                title: '6+ User Roles',
+                subtitle: 'Comprehensive role-based access control',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>The platform features a comprehensive role-based access control system with 6+ distinct user roles, each with specific responsibilities and permissions.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> User Roles</h3>
+                        <ul class="modal-list">
+                            <li><strong>Super Admin:</strong> Full system configuration and control</li>
+                            <li><strong>Broker Admin:</strong> Broker-level system administration</li>
+                            <li><strong>Partner Admin:</strong> Partner organization management</li>
+                            <li><strong>Sales Manager:</strong> Sales team management and customer assistance</li>
+                            <li><strong>Branch Operations:</strong> Branch-level operational functions</li>
+                            <li><strong>Central Operations:</strong> Central-level operational oversight</li>
+                            <li><strong>Additional Roles:</strong> Various specialized roles for specific functions</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Granular access control</li>
+                            <li>Clear responsibility delineation</li>
+                            <li>Enhanced security</li>
+                            <li>Streamlined operations</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'key-features': {
+                title: '20+ Key Features',
+                subtitle: 'Comprehensive platform capabilities',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Affinity 2.0 offers over 20 key features that provide comprehensive capabilities for managing affinity insurance programs.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Feature Categories</h3>
+                        <ul class="modal-list">
+                            <li><strong>Partner Management:</strong> Onboarding, configuration, and management</li>
+                            <li><strong>Product Configuration:</strong> Creation, customization, and pricing</li>
+                            <li><strong>Policy Management:</strong> Issuance, endorsements, and cancellations</li>
+                            <li><strong>Claims Processing:</strong> End-to-end claims management</li>
+                            <li><strong>Dashboard & Analytics:</strong> Business intelligence and reporting</li>
+                            <li><strong>Workflow Automation:</strong> Streamlined processes and automation</li>
+                            <li><strong>Integration Capabilities:</strong> API-based integrations and connectivity</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Comprehensive functionality</li>
+                            <li>End-to-end process coverage</li>
+                            <li>Automation and efficiency</li>
+                            <li>Scalable and flexible architecture</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'digital-process': {
+                title: '100% Digital Process',
+                subtitle: 'Complete digital transformation',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>Affinity 2.0 enables 100% digital processing of affinity insurance programs, from onboarding to claims settlement.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Digital Capabilities</h3>
+                        <ul class="modal-list">
+                            <li><strong>Digital Onboarding:</strong> Fully digital partner and customer onboarding</li>
+                            <li><strong>Online Purchases:</strong> Complete digital insurance purchase journeys</li>
+                            <li><strong>Electronic Documentation:</strong> Digital policies, certificates, and communications</li>
+                            <li><strong>Automated Processing:</strong> Automated underwriting, issuance, and claims</li>
+                            <li><strong>Digital Payments:</strong> Multiple online payment options</li>
+                            <li><strong>Electronic Signatures:</strong> Digital agreement and consent processes</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                        <ul class="modal-list">
+                            <li>Elimination of manual processes</li>
+                            <li>Faster turnaround times</li>
+                            <li>Reduced errors and rework</li>
+                            <li>Enhanced customer experience</li>
+                            <li>Lower operational costs</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'digitalization-benefit': {
+                title: 'End-to-End Digitalization',
+                subtitle: 'Complete digital transformation benefit',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>The platform enables complete digitalization of the entire affinity insurance lifecycle, from partner onboarding to policy issuance and claims settlement.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Digital Transformation Areas</h3>
+                        <ul class="modal-list">
+                            <li><strong>Partner Onboarding:</strong> Digital registration and configuration</li>
+                            <li><strong>Product Configuration:</strong> Online product setup and customization</li>
+                            <li><strong>Customer Journeys:</strong> Digital purchase processes</li>
+                            <li><strong>Policy Issuance:</strong> Automated certificate generation</li>
+                            <li><strong>Claims Processing:</strong> Digital claims submission and tracking</li>
+                            <li><strong>Document Management:</strong> Electronic document storage and retrieval</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Business Impact</h3>
+                        <ul class="modal-list">
+                            <li>Elimination of paper-based processes</li>
+                            <li>Faster service delivery</li>
+                            <li>Reduced operational costs</li>
+                            <li>Enhanced customer satisfaction</li>
+                            <li>Improved compliance and auditability</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'automation-benefit': {
+                title: 'Automation & Efficiency',
+                subtitle: 'Reduced manual effort benefit',
+                content: `
+                    <div class="modal-section">
+                        <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                        <p>The platform significantly reduces manual effort through automation of repetitive tasks and streamlined processes.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-cogs"></i> Automation Areas</h3>
+                        <ul class="modal-list">
+                            <li><strong>Data Entry:</strong> Automated data capture and validation</li>
+                            <li><strong>Premium Calculation:</strong> Automated premium computation based on rules</li>
+                            <li><strong>Certificate Generation:</strong> Automated COI issuance</li>
+                            <li><strong>Communication:</strong> Automated notifications and alerts</li>
+                            <li><strong>Reporting:</strong> Automated report generation and distribution</li>
+                            <li><strong>Workflow Routing:</strong> Automated task assignment and escalation</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-check-circle"></i> Business Impact</h3>
+                        <ul class="modal-list">
+                            <li>Reduced manual errors</li>
+                            <li>Faster processing times</li>
+                            <li>Lower operational costs</li>
+                            <li>Improved accuracy and consistency</li>
+                            <li>Enhanced employee productivity</li>
+                        </ul>
+                    </div>
+                `
+            }
+            // Additional modal content would follow the same pattern for all remaining cards
+        };
+        
+        // Open modal when any card is clicked
+        document.querySelectorAll('.feature-card, .journey-card, .role-card, .stat-card, .benefit-item').forEach(card => {
+            card.addEventListener('click', function() {
+                const modalId = this.getAttribute('data-modal');
+                if (modalData[modalId]) {
+                    modalTitle.textContent = modalData[modalId].title;
+                    modalSubtitle.textContent = modalData[modalId].subtitle;
+                    modalBody.innerHTML = modalData[modalId].content;
+                    modal.style.display = 'block';
+                } else {
+                    // Fallback for cards without specific modal data
+                    modalTitle.textContent = this.querySelector('h3') ? this.querySelector('h3').textContent : 'Feature Details';
+                    modalSubtitle.textContent = 'Detailed Information';
+                    modalBody.innerHTML = `
+                        <div class="modal-section">
+                            <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                            <p>Detailed information about this feature is being prepared. This card represents an important capability of the Affinity 2.0 platform.</p>
+                        </div>
+                        <div class="modal-section">
+                            <h3><i class="fas fa-cogs"></i> Key Aspects</h3>
+                            <ul class="modal-list">
+                                <li>Comprehensive functionality aligned with business requirements</li>
+                                <li>Seamless integration with other platform components</li>
+                                <li>User-friendly interface and workflows</li>
+                                <li>Robust security and compliance features</li>
+                            </ul>
+                        </div>
+                    `;
+                    modal.style.display = 'block';
+                }
+            });
+        });
+        
+        // Close modal when X is clicked
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.feature-card, .journey-card, .role-card, .stat-card, .benefit-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
